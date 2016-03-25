@@ -11,6 +11,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36643265-4cb3-4b81-aa33-1b505f5e3432" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/dudaizhong/coolweather/activity/ChooseAreaActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/dudaizhong/coolweather/db/CoolWeatherOpenHelper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/dudaizhong/coolweather/model/City.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/dudaizhong/coolweather/model/CoolWeatherDB.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/dudaizhong/coolweather/model/County.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/dudaizhong/coolweather/model/Province.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/dudaizhong/coolweather/util/HttpCallbackListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/dudaizhong/coolweather/util/HttpUtil.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/dudaizhong/coolweather/util/Utility.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/choose_area.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CoolWeather.iws" />
@@ -127,8 +137,8 @@
       <file leaf-file-name="County.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/dudaizhong/coolweather/model/County.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4054054">
-              <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.2027027">
+              <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
               <folding>
                 <element signature="e#250#251#0" expanded="true" />
                 <element signature="e#275#276#0" expanded="true" />
@@ -227,8 +237,16 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="ddz-mark &lt;dudaizhong@126.com&gt;" />
+      </list>
+    </option>
     <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="PUSH_TAGS">
+      <GitPushTagMode />
+    </option>
   </component>
   <component name="GradleLocalSettings">
     <option name="availableProjects">
@@ -2381,7 +2399,13 @@
       <option name="project" value="LOCAL" />
       <updated>1458891744879</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="ssss">
+      <created>1458891866158</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1458891866158</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2428,7 +2452,8 @@
     </ignored-roots>
     <MESSAGE value="ttt" />
     <MESSAGE value="dhd" />
-    <option name="LAST_COMMIT_MESSAGE" value="dhd" />
+    <MESSAGE value="ssss" />
+    <option name="LAST_COMMIT_MESSAGE" value="ssss" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2959,8 +2984,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/dudaizhong/coolweather/model/County.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4054054">
-          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.2027027">
+          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
           <folding>
             <element signature="e#250#251#0" expanded="true" />
             <element signature="e#275#276#0" expanded="true" />

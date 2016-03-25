@@ -57,7 +57,7 @@ public class ChooseAreaActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list_view);
         titleView = (TextView) findViewById(R.id.title_text);
 
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,dataList);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, dataList);
         listView.setAdapter(adapter);
 
         coolWeatherDB = CoolWeatherDB.getIntance(this);//获取实例
@@ -65,10 +65,10 @@ public class ChooseAreaActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if(currentLevel == LEVEL_PROVINCE){
-                    selectedProvince =provinceList.get(i);
+                if (currentLevel == LEVEL_PROVINCE) {
+                    selectedProvince = provinceList.get(i);
                     queryCities();
-                }else if (currentLevel == LEVEL_COUNTY){
+                } else if (currentLevel == LEVEL_COUNTY) {
                     selectedCity = cityList.get(i);
                     queryCounties();
                 }
@@ -77,12 +77,12 @@ public class ChooseAreaActivity extends AppCompatActivity {
         queryProvinces();//加载省级数据
     }
 
-//    查询全国所有的县，优先从数据库查询，如果没有再去服务器上查询
-    private void queryProvinces(){
+    //    查询全国所有的县，优先从数据库查询，如果没有再去服务器上查询
+    private void queryProvinces() {
         provinceList = coolWeatherDB.loadProvince();//读取省级信息
-        if(provinceList.size()>0){
+        if (provinceList.size() > 0) {
             dataList.clear();
-            for(Province province:provinceList){
+            for (Province province : provinceList) {
                 dataList.add(province.getProvinceName());
             }
             adapter.notifyDataSetChanged();
@@ -90,17 +90,17 @@ public class ChooseAreaActivity extends AppCompatActivity {
 
             titleView.setText("中国");
             currentLevel = LEVEL_PROVINCE;
-        }else {
-            queryFromServer(null,"province");
+        } else {
+            queryFromServer(null, "province");
         }
     }
 
     //    查询所选中省内所有的市，优先从数据库查询，如果没有再去服务器上查询
-    private void queryCities(){
+    private void queryCities() {
         cityList = coolWeatherDB.loadCities(selectedProvince.getId());//读取省级信息
-        if(cityList.size()>0){
+        if (cityList.size() > 0) {
             dataList.clear();
-            for(City city:cityList){
+            for (City city : cityList) {
                 dataList.add(city.getCityName());
             }
             adapter.notifyDataSetChanged();
@@ -108,17 +108,17 @@ public class ChooseAreaActivity extends AppCompatActivity {
 
             titleView.setText(selectedProvince.getProvinceName());
             currentLevel = LEVEL_CITY;
-        }else {
-            queryFromServer(selectedProvince.getProvinceCode(),"city");
+        } else {
+            queryFromServer(selectedProvince.getProvinceCode(), "city");
         }
     }
 
     //    查询所选中市内所有的县，优先从数据库查询，如果没有再去服务器上查询
-    private void queryCounties(){
+    private void queryCounties() {
         countyList = coolWeatherDB.loadCounty(selectedCity.getId());//读取省级信息
-        if(countyList.size()>0){
+        if (countyList.size() > 0) {
             dataList.clear();
-            for(County county:countyList){
+            for (County county : countyList) {
                 dataList.add(county.getCountyName());
             }
             adapter.notifyDataSetChanged();
@@ -126,16 +126,16 @@ public class ChooseAreaActivity extends AppCompatActivity {
 
             titleView.setText(selectedCity.getCityName());
             currentLevel = LEVEL_COUNTY;
-        }else {
-            queryFromServer(selectedCity.getCityCode(),"county");
+        } else {
+            queryFromServer(selectedCity.getCityCode(), "county");
         }
     }
 
     private void queryFromServer(final String code, final String type) {
         String address;
-        if(!TextUtils.isEmpty(code)){
-            address = "http://www.weather.com.cn/data/list3/city" +code +".xml";
-        }else{
+        if (!TextUtils.isEmpty(code)) {
+            address = "http://www.weather.com.cn/data/list3/city" + code + ".xml";
+        } else {
             address = "http://www.weather.com.cn/data/list3/city.xml";
         }
 
@@ -143,23 +143,24 @@ public class ChooseAreaActivity extends AppCompatActivity {
             @Override
             public void onFinish(String response) {
                 boolean result = false;
-                if("province".equals(type)){
-                    result = Utility.handleProvincesResponse(coolWeatherDB,response);
-                }else if("city".equals(type)){
-                    result = Utility.handleCitiesResponse(coolWeatherDB,response,selectedProvince.getId());
-                }else if("county".equals(type)){
-                    result = Utility.handleCountiesResponse(coolWeatherDB,response,selectedCity.getId());
+                if ("province".equals(type)) {
+                    result = Utility.handleProvincesResponse(coolWeatherDB, response);
+                } else if ("city".equals(type)) {
+                    result = Utility.handleCitiesResponse(coolWeatherDB, response, selectedProvince.getId());
+                } else if ("county".equals(type)) {
+                    result = Utility.handleCountiesResponse(coolWeatherDB, response, selectedCity.getId());
                 }
-                if(result){
+
+                if (result) {
 //                    通过runOnUiThread()方法回到主线程处理逻辑
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            if("province".equals(type)){
+                            if ("province".equals(type)) {
                                 queryProvinces();
-                            }else if("city".equals(type)){
+                            } else if ("city".equals(type)) {
                                 queryCities();
-                            }else if("county".equals(type)){
+                            } else if ("county".equals(type)) {
                                 queryCounties();
                             }
                         }

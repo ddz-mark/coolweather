@@ -11,6 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         >
+        <activity android:name="com.example.dudaizhong.coolweather.activity.WeatherActivity"
+            ></activity>
 
         <activity
             android:name="com.example.dudaizhong.coolweather.activity.ChooseAreaActivity"

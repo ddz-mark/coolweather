@@ -14,6 +14,7 @@ public class Utility {
 
     //    解析和处理服务器返回的省级数据
     public synchronized static boolean handleProvincesResponse(CoolWeatherDB coolWeatherDB, String response) {
+
         if (!TextUtils.isEmpty(response)) {//判断字符串是否为空
             String[] allProvinces = response.split(",");
             if (allProvinces != null && allProvinces.length > 0) {
@@ -26,14 +27,15 @@ public class Utility {
 //                    将解析出来的数据存储到Province数据库中
                     coolWeatherDB.saveProvince(province);
                 }
+                return true;
             }
-            return true;
         }
         return false;
     }
 
     //    解析和处理服务器返回的市级数据
     public synchronized static boolean handleCitiesResponse(CoolWeatherDB coolWeatherDB, String response, int provinceId) {
+
         if (!TextUtils.isEmpty(response)) {//判断字符串是否为空
             String[] allCities = response.split(",");
             if (allCities != null && allCities.length > 0) {
@@ -47,8 +49,8 @@ public class Utility {
 //                    将解析出来的数据存储到Province数据库中
                     coolWeatherDB.saveCity(city);
                 }
+                return true;
             }
-            return true;
         }
         return false;
     }
@@ -68,8 +70,8 @@ public class Utility {
 //                    将解析出来的数据存储到Province数据库中
                     coolWeatherDB.saveCounty(county);
                 }
+                return true;
             }
-            return true;
         }
         return false;
     }

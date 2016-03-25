@@ -44,14 +44,14 @@ public class HttpUtil {
 
                     connection.setConnectTimeout(8000);//设置连接超时
                     connection.setReadTimeout(8000);//设置超时的毫秒数
-                    connection.setDoInput(true);
-                    connection.setDoOutput(true);
+                    //connection.setDoInput(true);
+                    //connection.setDoOutput(true);
 
                     InputStream inputStream = connection.getInputStream();
                     //下面对获取到的输入流进行读取
                     BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
                     StringBuilder response = new StringBuilder();
-                    String line = null;
+                    String line ;
                     while ((line = reader.readLine()) != null) {
                         response.append(line);
                     }

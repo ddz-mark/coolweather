@@ -32,7 +32,7 @@ public class CoolWeatherDB {
     }
 
     //    获取CoolWeatherDB的实例
-    public synchronized static CoolWeatherDB getIntance(Context context) {
+    public synchronized static CoolWeatherDB getInstance(Context context) {
         if (coolWeatherDB == null) {
             coolWeatherDB = new CoolWeatherDB(context);
         }
@@ -61,9 +61,10 @@ public class CoolWeatherDB {
                 province.setProvinceCode(cursor.getString(cursor.getColumnIndex("province_code")));
                 list.add(province);
             } while (cursor.moveToNext());
-            if (cursor != null) {
-                cursor.close();
-            }
+        }
+
+        if (cursor != null) {
+            cursor.close();
         }
         return list;
     }
@@ -75,14 +76,16 @@ public class CoolWeatherDB {
             ContentValues values = new ContentValues();
             values.put("city_name", city.getCityName());
             values.put("city_code", city.getCityCode());
+            values.put("province_id",city.getProvinceId());
             db.insert("City", null, values);
         }
     }
 
     //    从数据库读取省下所有的城市信息，并存储在list泛型里
     public List<City> loadCities(int provinceId) {
+
         List<City> list = new ArrayList<>();
-        Cursor cursor = db.query("City", null, "province_id = ?", new String[]{String.valueOf(provinceId)}, null, null, null);
+        Cursor cursor = db.query("City", null, "province_id =?", new String[]{String.valueOf(provinceId)}, null, null, null);
         if (cursor.moveToFirst()) {
             do {
                 City city = new City();
@@ -92,9 +95,10 @@ public class CoolWeatherDB {
                 city.setProvinceId(provinceId);
                 list.add(city);
             } while (cursor.moveToNext());
-            if (cursor != null) {
-                cursor.close();
-            }
+        }
+
+        if (cursor != null) {
+            cursor.close();
         }
         return list;
     }
@@ -123,9 +127,9 @@ public class CoolWeatherDB {
                 county.setCityId(cityId);
                 list.add(county);
             } while (cursor.moveToNext());
-            if (cursor != null) {
-                cursor.close();
-            }
+        }
+        if (cursor != null) {
+            cursor.close();
         }
         return list;
     }

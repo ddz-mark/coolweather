@@ -64,11 +64,11 @@ public class ChooseAreaActivity extends AppCompatActivity {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if(prefs.getBoolean("city_selected",false)){
+       /* if(prefs.getBoolean("city_selected",false)){
             Intent intent = new Intent(ChooseAreaActivity.this,WeatherActivity.class);
             startActivity(intent);
             finish();
-        }
+        }*/
 
         setContentView(R.layout.choose_area);
         listView = (ListView) findViewById(R.id.list_view);

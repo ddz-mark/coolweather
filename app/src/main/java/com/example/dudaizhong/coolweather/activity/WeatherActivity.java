@@ -1,15 +1,19 @@
 package com.example.dudaizhong.coolweather.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,11 +22,12 @@ import com.example.dudaizhong.coolweather.R;
 import com.example.dudaizhong.coolweather.util.HttpCallbackListener;
 import com.example.dudaizhong.coolweather.util.HttpUtil;
 import com.example.dudaizhong.coolweather.util.Utility;
+import com.mikepenz.iconics.context.IconicsLayoutInflater;
 
 /**
  * Created by Dudaizhong on 2016/3/25.
  */
-public class WeatherActivity extends AppCompatActivity {
+public class WeatherActivity extends AppCompatActivity implements View.OnClickListener{
 
     private LinearLayout weatherInfoLayout;
 
@@ -33,6 +38,8 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView temp2Text;//用于显示气温2
     private TextView currentDateText;  //用于显示当前日期
 
+    private Button switchCity;//切换城市按钮
+    private Button refreshWeather;//更新天气按钮
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +57,12 @@ public class WeatherActivity extends AppCompatActivity {
         temp1Text = (TextView) findViewById(R.id.temp1);
         temp2Text = (TextView) findViewById(R.id.temp2);
         currentDateText = (TextView) findViewById(R.id.current_date);
+
+        switchCity = (Button) findViewById(R.id.switch_city);
+        refreshWeather = (Button) findViewById(R.id.refresh_weather);
+        switchCity.setOnClickListener(this);
+        refreshWeather.setOnClickListener(this);
+
 
         String countyCode = getIntent().getStringExtra("county_code");//从主activity中获取信息,acticity之间的通信
 
@@ -132,5 +145,29 @@ public class WeatherActivity extends AppCompatActivity {
         currentDateText.setText(prefs.getString("current_date", ""));
         weatherInfoLayout.setVisibility(View.VISIBLE);
         cityNameText.setVisibility(View.VISIBLE);
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.switch_city:
+                Intent intent = new Intent(WeatherActivity.this,ChooseAreaActivity.class);
+                intent.putExtra("from_weather_activity",true);
+                startActivity(intent);
+                finish();
+                break;
+
+            case R.id.refresh_weather:
+                publishText.setText("同步中...");
+                SharedPreferences prefs  = PreferenceManager.getDefaultSharedPreferences(this);
+                String weatherCode = prefs.getString("weather_code","");
+                if(!TextUtils.isEmpty(weatherCode)){
+                    queryWeatherInfo(weatherCode);
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

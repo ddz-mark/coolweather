@@ -23,4 +23,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.mikepenz:iconics-core:2.5.10@aar'
+    compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.1@aar'
 }

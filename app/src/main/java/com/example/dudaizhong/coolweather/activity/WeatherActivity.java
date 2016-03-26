@@ -14,11 +14,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dudaizhong.coolweather.R;
+import com.example.dudaizhong.coolweather.service.AutoUpdateService;
 import com.example.dudaizhong.coolweather.util.HttpCallbackListener;
 import com.example.dudaizhong.coolweather.util.HttpUtil;
 import com.example.dudaizhong.coolweather.util.Utility;
@@ -37,6 +39,7 @@ public class WeatherActivity extends AppCompatActivity implements View.OnClickLi
     private TextView temp1Text;  //用于显示气温1
     private TextView temp2Text;//用于显示气温2
     private TextView currentDateText;  //用于显示当前日期
+
 
     private Button switchCity;//切换城市按钮
     private Button refreshWeather;//更新天气按钮
@@ -138,13 +141,16 @@ public class WeatherActivity extends AppCompatActivity implements View.OnClickLi
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         cityNameText.setText(prefs.getString("city_name", ""));
-        temp1Text.setText(prefs.getString("temp1", ""));
-        temp2Text.setText(prefs.getString("temp2", ""));
+        temp1Text.setText(prefs.getString("temp2", ""));
+        temp2Text.setText(prefs.getString("temp1", ""));
         weatherDespText.setText(prefs.getString("weather_desp", ""));
         publishText.setText("今天" + prefs.getString("publish_time", "") + "发布");
         currentDateText.setText(prefs.getString("current_date", ""));
         weatherInfoLayout.setVisibility(View.VISIBLE);
         cityNameText.setVisibility(View.VISIBLE);
+
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 
 

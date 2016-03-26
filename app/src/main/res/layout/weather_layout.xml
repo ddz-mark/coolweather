@@ -46,6 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:textColor="#FFF"
             android:textSize="18sp"
             android:id="@+id/publish_text"
@@ -62,9 +63,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:id="@+id/current_date"
-                android:gravity="center"
                 android:textColor="#fff"
+                android:gravity="center"
                 android:textSize="18sp"/>
+
 
             <TextView
                 android:layout_width="wrap_content"
